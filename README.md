@@ -6,11 +6,11 @@ A aplicação "trello" é para auxiliar na elaboração e desenvolvimento do pro
 
 Neste Projeto são utilizados dois programas:
 
-* Programa para carregar o driver (Espaço de Kernel).
+Programa para carregar o driver (Espaço de Kernel).
 ------------
 Este programa tem como objetivo carregar um driver responsável por criptograr (hash ou AES) e descriptograr dados baseado em uma chave fornecida, e armazenar o resultado da última operação. 
 
-* Programa para facilitar a comunicação de usuário com o driver (Espaço de Usuário).
+Programa para facilitar a comunicação de usuário com o driver (Espaço de Usuário).
 ------------
 Este programa tem como objetivo facilitar a comunicação do usuário com o driver que faz a criptografia e descriptografia dos dados. Possui algumas funções como:
 *c cifrar as informações.
@@ -19,8 +19,8 @@ Este programa tem como objetivo facilitar a comunicação do usuário com o driv
 *l leitura do resultado da última requisição.
 
 Integrantes:
-Daniel Toloto: dctoloto@gmail.com
-Diogo Pinheiro: diogo.7.pinheiro@hotmail.com  
-Rodrigo Machado: rodrigomachado161@gmail.com
+* Daniel Toloto: dctoloto@gmail.com
+* Diogo Pinheiro: diogo.7.pinheiro@hotmail.com  
+* Rodrigo Machado: rodrigomachado161@gmail.com
 
 

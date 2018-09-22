@@ -2,7 +2,7 @@
 ======
 
 Este projeto tem como objetivo criar um dispositivo que criptografa e descriptografa dados inseridos pelo usuário, através de uma chave fornecida pelo mesmo.
-A aplicação "trello" é para auxiliar na elaboração e desenvolvimento do projeto: https://trello.com/b/EmZKTnBN/projeto-1
+A aplicação "trello" é para auxiliar na elaboração e desenvolvimento do projeto: https://trello.com/b/HUClmuRU
 
 Neste Projeto são utilizados dois programas:
 

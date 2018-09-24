@@ -9,33 +9,66 @@
 static char receive[BUFFER_LENGTH];     ///< The receive buffer from the LKM
  
 int main(){
-   int ret, fd;
-   char stringToSend[BUFFER_LENGTH];
-   printf("Starting device test code example...\n");
-   fd = open("/dev/cryptnum", O_RDWR);             // Open the device with read/write access
-   if (fd < 0){
-      perror("Failed to open the device...");
-      return errno;
-   }
-   printf("Type in a short string to send to the kernel module:\n");
-   scanf("%[^\n]%*c", stringToSend);                // Read in a string (with spaces)
-   printf("Writing message to the device [%s].\n", stringToSend);
-   ret = write(fd, stringToSend, strlen(stringToSend)); // Send the string to the LKM
-   if (ret < 0){
-      perror("Failed to write the message to the device.");
-      return errno;
-   }
+	
+	int opcao;
+	int ret, fd;
+  	char funcao[BUFFER_LENGTH];
+	char stringToSend[BUFFER_LENGTH + 2];
+	
+	printf("Inicializando device teste...\n");
+   	fd = open("/dev/cryptnum", O_RDWR);             // Abrir o device com leitura/escrita 
+   	if (fd < 0){	      
+	perror("Falha ao abrir o device...");
+     	return errno;
+  	}
+	
+	do{
+	printf("Selecione sua opção\n");
+	printf("1-Criptografia (c) \n 2-Descriptografia (d)\n 3-Hash (h)\n 4-Sair\n");	
+	scanf("%d", &opcao);
+	__fpurge(stdin);
+  
+   	printf("Digite sua mensagem para enviar ao kernel:\n");
+   	scanf("%s", funcao);                // Pegando mensagem 
+   
+
+	switch (opcao) {
+	case 1: 
+		strcpy(stringToSend, "c ");
+		strcat(stringToSend,funcao);
+	break;
+	
+	case 2: 
+		strcpy(stringToSend, "d ");
+		strcat(stringToSend,funcao);
+	break; 
+
+	case 3:
+		strcpy(stringToSend, "h ");
+		strcat(stringToSend,funcao);
+	break;
+	
+	default:
+	return 0;
+	break;
+	}
+   
+	ret = write(fd, stringToSend, strlen(stringToSend)); // Envia string para o modulo do kernel 
+	if (ret < 0){
+     	perror("Falha para escrever a mensagem no device.");
+    	return errno;
+  	}
  
-   printf("Press ENTER to read back from the device...\n");
-   getchar();
- 
-   printf("Reading from the device...\n");
-   ret = read(fd, receive, BUFFER_LENGTH);        // Read the response from the LKM
-   if (ret < 0){
-      perror("Failed to read the message from the device.");
-      return errno;
-   }
-   printf("The received message is: [%s]\n", receive);
-   printf("End of the program\n");
-   return 0;
+
+	ret = read(fd, receive, BUFFER_LENGTH);        // Lendo a resposta do Kernel
+ 	  if (ret < 0){
+    	  perror("Falha ao ler a mensage do device.");
+	  return errno;
+  	 }
+   	printf("%s\n", receive);
+
+	}while(opcao != 4);
+
+	printf("Finalilzando Programa\n");
+   	return 0;
 }

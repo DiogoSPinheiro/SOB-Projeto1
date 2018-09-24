@@ -123,8 +123,30 @@ static ssize_t dev_read(struct file *filep, char *buffer, size_t len, loff_t *of
 	// *** Escrevendo no modulo *** //
 
 static ssize_t dev_write(struct file *filep, const char *buffer, size_t len, loff_t *offset){
-   sprintf(message, "%s", buffer, len);			// passando a mensagem para message
-   size_of_message = strlen(message);                 // capturando o tamanho da mensagem
+
+   
+	
+	switch (buffer[0]){
+
+	case 'c': 
+	sprintf(message, "Criptografia");
+	break; 
+	
+	case 'd':
+	sprintf(message, "Descriptografia");
+	break; 
+
+	case 'h':
+	sprintf(message, "Hash");
+	break; 
+
+	default: 
+sprintf(message,"Error");
+	break; 
+
+	}
+	size_of_message = strlen(message);                 // capturando o tamanho da mensagem
+	
    printk(KERN_INFO "Recebidos %zu caracteres do usuario\n", len);
    return len;
 }
